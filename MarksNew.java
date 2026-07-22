@@ -1,15 +1,15 @@
 import java.util.Scanner;
 
-public class Marks{
+public class MarksNew{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter the number of students: ");
         int n = sc.nextInt();
         int marks[][] = new int[n][3];
 
-        System.out.print("Enter:\n1:Add marks\n2:Get student average\n3:Get subject average\n4:Get total mark of student\n5:Exit\n");
+        System.out.print("Enter:\n1:Add marks\n2:Get student average\n3:Get subject average\n4:Get total mark of student\n5:Display grade\n6:Exit\n");
         int choice = sc.nextInt();
-        while (choice<1 || choice>5) {
+        while (choice<1 || choice>6) {
             System.out.print("Invalid choice, enter again: ");
             choice = sc.nextInt();
         }
@@ -68,12 +68,42 @@ public class Marks{
                 int totalMark = marks[stdId-1][0] + marks[stdId-1][1] + marks[stdId-1][2];
                 System.out.printf("The total mark of student with student ID %d: %d\n", stdId, totalMark);
             } else if (choice == 5) {
+                System.out.print("Enter student id to display the grade: ");
+                int stdId = sc.nextInt();
+                while (stdId<1 || stdId>n) {
+                    System.out.print("Invalid choice, enter again: ");
+                    stdId = sc.nextInt();
+                }
+                String grade = "";
+                int stdMark = 0;
+                for (int i=0; i<3; i++) {
+                    stdMark = marks[stdId-1][i];
+                    if (stdMark >= 90) {
+                        grade = "Grade A";
+                    } else if (stdMark >= 80) {
+                        grade = "Grade B";
+                    } else if (stdMark >= 70) {
+                        grade = "Grade C";
+                    } else if (stdMark >= 60) {
+                        grade = "Grade D";
+                    } else {
+                        grade = "Fail";
+                    }
+                    if (i==0) {
+                        System.out.printf("Mathematics: %s\n", grade);
+                    } else if (i==1) {
+                        System.out.printf("Chemistry: %s\n", grade);
+                    } else {
+                        System.out.printf("Physics: %s\n", grade);
+                    }
+                }
+            } else if (choice == 6) {
                 System.out.println("Exiting...");
                 break;
             }
-            System.out.print("Enter:\n1:Add marks\n2:Get student average\n3:Get subject average\n4:Get total mark of student\n5:Exit\n");
+            System.out.print("Enter:\n1:Add marks\n2:Get student average\n3:Get subject average\n4:Get total mark of student\n5:Display grade\n6:Exit\n");
             choice = sc.nextInt();
-            while (choice<1 || choice>5) {
+            while (choice<1 || choice>6) {
                 System.out.print("Invalid choice, enter again: ");
                 choice = sc.nextInt();
             }
