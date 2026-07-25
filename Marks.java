@@ -7,9 +7,9 @@ public class Marks{
         int n = sc.nextInt();
         int marks[][] = new int[n][3];
 
-        System.out.print("Enter:\n1:Add marks\n2:Get student average\n3:Get subject average\n4:Get total mark of student\n5:Exit\n");
+        System.out.print("Enter:\n1:Add marks\n2:Get student average\n3:Get subject average\n4:Get total mark of student\n5:Update marks\n6:Exit\n");
         int choice = sc.nextInt();
-        while (choice<1 || choice>5) {
+        while (choice<1 || choice>6) {
             System.out.print("Invalid choice, enter again: ");
             choice = sc.nextInt();
         }
@@ -67,13 +67,33 @@ public class Marks{
                 }
                 int totalMark = marks[stdId-1][0] + marks[stdId-1][1] + marks[stdId-1][2];
                 System.out.printf("The total mark of student with student ID %d: %d\n", stdId, totalMark);
-            } else if (choice == 5) {
+            } else if (choice == 6) {
+                System.out.println("Exiting...");
+                break;
+            } else if (choice ==5) {
+                System.out.print("Enter student id to update the marks: ");
+                int stdId = sc.nextInt();
+                while (stdId<1 || stdId>n) {
+                    System.out.print("Invalid choice, enter again: ");
+                    stdId = sc.nextInt();
+                }
+                System.out.println("Enter the subject id to update the marks:\n1:Mathematics\n2:Chemistry\n3:Physics");
+                int subID = sc.nextInt();
+                while (subID<1 || subID>3) {
+                    System.out.print("Invalid choice, enter again: ");
+                    subID = sc.nextInt();
+                }
+                System.out.printf("Enter the new mark for student %d in subject id  %d: ", stdId, subID);
+                int inputMark = sc.nextInt();
+                marks[stdId-1][subID-1] = inputMark;
+                System.out.println("Mark updated successfully.");
+            } else if (choice == 6) {
                 System.out.println("Exiting...");
                 break;
             }
-            System.out.print("Enter:\n1:Add marks\n2:Get student average\n3:Get subject average\n4:Get total mark of student\n5:Exit\n");
+            System.out.print("Enter:\n1:Add marks\n2:Get student average\n3:Get subject average\n4:Get total mark of student\n5:Update marks\n6:Exit\n");
             choice = sc.nextInt();
-            while (choice<1 || choice>5) {
+            while (choice<1 || choice>6) {
                 System.out.print("Invalid choice, enter again: ");
                 choice = sc.nextInt();
             }
